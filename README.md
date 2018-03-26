@@ -57,3 +57,20 @@ $ npm install extract-text-webpack-plugin@^2.0.0-beta.4
 
 
 ```
+
+## 性能检测工具
+> $ npm install react-addons-perf --save
+```
+在app.jsx添加
+
+// 性能测试
+import Perf from 'react-addons-perf'
+if(__DEV__){
+  window.Perf=Perf
+}
+
+Perf.start() // 检测性能
+Perf.stop() // 停止检测
+Perf.printWasted() // 打印浪费性能的组件列表
+
+```
