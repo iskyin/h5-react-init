@@ -1,6 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+// 性能检测
+import Perf from 'react-addons-perf';
+if(__DEV__){
+  window.Perf=Perf
+}
+
 // 公共样式
 import '@/style/common/index.less';
 
@@ -14,6 +20,7 @@ new InitAppInfo({
 
 import HeaderBack from '@/components/header/headerBack/headerBack';
 import HeaderLogo from '@/components/header/headerLogo/headerLogo';
+
 
 class APP extends React.Component {
 

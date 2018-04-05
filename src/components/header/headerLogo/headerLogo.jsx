@@ -1,4 +1,5 @@
 import React from 'react';
+import pureRenderMixin from 'react-addons-pure-render-mixin'; // 避免无效渲染
 
 import './headerLogo.less'
 
@@ -6,9 +7,10 @@ class HeaderLogo extends React.Component {
 
   constructor(props,context){
     super(props,context);
+    this.shouldComponentUpdate=pureRenderMixin.shouldComponentUpdate.bind(this);
     this.state={
       txt:'这是this.state'
-    }
+    };
   }
 
   render() {
@@ -36,15 +38,12 @@ class HeaderLogo extends React.Component {
   }
 
   toSearchMore(){
-
     console.log('****************');
     let txt = 'toSearchMore --> : ';
     this.setState({
       txt: txt
     });
-
   }
-
 
 
 }
