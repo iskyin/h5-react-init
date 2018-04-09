@@ -7,7 +7,7 @@ import PRXI from 'react-addons-pure-render-mixin';
 /**
 
 **/
-class Login extends React.Component {
+class Home extends React.Component {
   constructor(props){
     super(props);
     // 避免无效渲染
@@ -18,12 +18,12 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='login'>
-        Login
-        <Link to='/'> 跳转到 home </Link>
+      <div className='home'>
+        Home
+        <Link to='/me'> 跳转到 home </Link>
       </div>
     );
   }
 
 }
-export default Login;
+export default Home;

@@ -1,13 +1,21 @@
 import React from 'react';
-import pureRenderMixin from 'react-addons-pure-render-mixin'; // 避免无效渲染
+import PRMX from 'react-addons-pure-render-mixin'; // 避免无效渲染
 
-import './headerLogo.less'
+import './index.less'
 
+/**
+接收参数：
+  prop:{
+    info:{
+      title:"", // 标题
+      show:{} // 是否显示对象
+    }
+  }
+**/
 class HeaderLogo extends React.Component {
-
   constructor(props,context){
     super(props,context);
-    this.shouldComponentUpdate=pureRenderMixin.shouldComponentUpdate.bind(this);
+    this.shouldComponentUpdate=PRMX.shouldComponentUpdate.bind(this);
     this.state={
       txt:'这是this.state'
     };
@@ -25,7 +33,7 @@ class HeaderLogo extends React.Component {
           <div onClick={this.toSearchMore.bind(this)} className='rgt more '></div>
         </div>
       </div>
-    )
+    );
   }
 
   toScanner(){
@@ -47,5 +55,4 @@ class HeaderLogo extends React.Component {
 
 
 }
-
 export default HeaderLogo

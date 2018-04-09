@@ -55,6 +55,13 @@ $ npm install --save-dev react-transform-hmr
 $ npm install extract-text-webpack-plugin@^2.0.0-beta.4
 > 最后的beta.4是必要的
 
+# 安装路由
+$ npm install react-router --save
+
+
+
+
+
 
 ```
 ## React 生命周期说明
@@ -135,4 +142,13 @@ import pureRenderMixin from 'react-addons-pure-render-mixin'
 > Immutable 实现了js中“不可变数据”的概念
 ```
   适用于数据结构很深的大型项目（数据结构很深的项目需考虑是否需要用此框架）
+```
+
+## 首屏性能优化
+```
+（1）静态资源的懒加载
+    方案一：
+      使用react-router中的huge-apps（它将react-router本身和webpack的require.ensure结合起来，来解决资源的懒加载）
+
+
 ```

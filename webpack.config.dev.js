@@ -7,7 +7,7 @@ var sysinfo=require('./public/sysinfo/index');
 module.exports = {
 
     // 入口文件
-    entry: path.resolve(__dirname, 'src/app.jsx'),
+    entry: path.resolve(__dirname, 'src/index.jsx'),
 
     // 输出
     output: {

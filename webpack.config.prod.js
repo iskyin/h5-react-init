@@ -8,7 +8,7 @@ module.exports = {
 
   // 入口文件
   entry: {
-    app: path.resolve(__dirname, 'src/app.jsx'),
+    app: path.resolve(__dirname, 'src/index.jsx'),
     // 将 第三方依赖（node_modules中的） 单独打包
     vendor: Object.keys(pkg.dependencies),
   },
