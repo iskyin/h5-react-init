@@ -15,7 +15,9 @@ new InitAppInfo({
 
 // 组件引用
 import HeaderBack from '@/components/header/headerBack';
+import FloorMenu from '@/components/floor/menu';
 import Todo       from '@/view/todo';
+
 
 /**
   最外层壳子
@@ -36,9 +38,8 @@ class APP extends React.Component {
   render() {
     return (
       <div className='app'>
-        <HeaderBack info={this.state.headerInfo}  />
         {this.props.children}
-        <Todo />
+        <FloorMenu/>
       </div>
     );
   }
