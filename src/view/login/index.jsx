@@ -1,3 +1,7 @@
+/**
+ * @author lenjee (lenjee@outlook.com)
+ * @website www.lenjee.com
+**/
 import React from 'react';
 import {Link} from 'react-router';
 

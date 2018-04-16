@@ -1,3 +1,7 @@
+/**
+ * @author lenjee (lenjee@outlook.com)
+ * @website www.lenjee.com
+**/
 import React from 'react';
 import {Link} from 'react-router';
 
@@ -14,42 +18,67 @@ class FloorMenu extends React.Component {
     // 避免无效渲染
     this.shouldComponentUpdate=PRXI.shouldComponentUpdate.bind(this);
     this.state={
+      sltMenu:{
+        home:true,
+        message:false,
+        discover:false,
+        me:false,
+      },
     };
   }
-
   render() {
     return (
       <div className='floorMenu'>
+
         <Link to='/'>
-          <div className='menuBtn'>
-            <div></div>
-            <div>首页</div>
+          <div onClick={this.selectedMenu.bind(this,"home")}  className='menuBtn'>
+            <div className={this.state.sltMenu.home ? 'menu_logo homed' : 'menu_logo home'}></div>
+            <div className={this.state.sltMenu.home?'menu_title slted':'menu_title slt'}>主页</div>
           </div>
         </Link>
 
-        <Link to='/'>
-          <div className='menuBtn'>
-            <div></div>
-            <div>信息</div>
+        <Link to='/message'>
+          <div onClick={this.selectedMenu.bind(this,"message")}  className='menuBtn'>
+            <div className={this.state.sltMenu.message ? 'menu_logo messaged' : 'menu_logo message'}></div>
+            <div className={this.state.sltMenu.message?'menu_title slted':'menu_title slt'}>信息</div>
           </div>
         </Link>
 
-        <Link to='/'>
+        <Link onClick={this.selectedMenu.bind(this,"discover")}  to='/discover'>
           <div className='menuBtn'>
-            <div></div>
-            <div>发现</div>
+            <div className={this.state.sltMenu.discover ? 'menu_logo discovered' : 'menu_logo discover'} ></div>
+            <div className={this.state.sltMenu.discover?'menu_title slted':'menu_title slt'}>发现</div>
           </div>
         </Link>
 
-        <Link to='/'>
+        <Link onClick={this.selectedMenu.bind(this,"me")} to='/me'>
           <div className='menuBtn'>
-            <div></div>
-            <div>我</div>
+            <div className={this.state.sltMenu.me ? 'menu_logo med' : 'menu_logo me'}></div>
+            <div className={this.state.sltMenu.me?'menu_title slted':'menu_title slt'}>我</div>
           </div>
         </Link>
+
       </div>
     );
   }
+
+  selectedMenu(val,e){
+    if(this.state.sltMenu[val]){
+      return;
+    }
+    let menu={
+      home:false,
+      message:false,
+      discover:false,
+      me:false,
+    };
+    menu[val]=true;
+    this.setState({
+      sltMenu:menu
+    });
+  }
+
+
 
 }
 export default FloorMenu;

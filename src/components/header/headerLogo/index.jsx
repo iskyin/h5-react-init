@@ -1,3 +1,7 @@
+/**
+ * @author lenjee (lenjee@outlook.com)
+ * @website www.lenjee.com
+**/
 import React from 'react';
 import PRMX from 'react-addons-pure-render-mixin'; // 避免无效渲染
 
@@ -17,14 +21,14 @@ class HeaderLogo extends React.Component {
     super(props,context);
     this.shouldComponentUpdate=PRMX.shouldComponentUpdate.bind(this);
     this.state={
-      txt:'这是this.state'
+
     };
   }
 
   render() {
     return(
       <div className='headerLogo'>
-        <div className='title'>{this.state.txt}--{this.props.info.title}</div>
+        <div className='title'>{this.props.info.title}</div>
         <div className='logo'>
           LENJEE
         </div>

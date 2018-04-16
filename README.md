@@ -58,9 +58,59 @@ $ npm install extract-text-webpack-plugin@^2.0.0-beta.4
 # 安装路由
 $ npm install react-router --save
 
+# 安装redux
+npm install redux react-redux --save
+  Redux是Flux的一种实现方法
+    flux数据流向：
+      -> Action:
+          用户有各种各样的Action
+        -> Dispacher :
+            所有的Action由一个统一的Dispacher分发
+          -> Store
+              Dispacher分发到若干个Store里去
+            -> view
+              -> Action
+    注意:
+      一个store只能向视图层传递信息，而不允许视图层再返回来作用到Store上
 
+  Redux数据流向:
+    -> UI 层展现
+      -> Action
+        -> Reducer
+          -> Store
+            -> State
+              -> UI层展现
+说明：
+  > actions:
+    状态管理器需要做的操作
+      1. 行为的抽象
+      2. 普通JS对象
+      3. 一般由方法生成
+      4. 必须有一个type
+  > reducers:
+    对不同的action做出不同的操作
+      1. 响应的抽象
+      2. 纯方法
+      3. 传入旧状态和action
+      4. 返回新状态
+  > store:
+    管理state的单一对象
+      1. action作用于store；
+      2. reducer根据store响应；
+      3. 对于redux来说，store是唯一的；
+      4. store包括了完整的state；
+      5. state完全可预测
 
+    涉及方法:
+      store.getState():
+        获取state
+      store.dispatch(action):
+        发出操作，更新state
+      store.subscribe(listener):
+        监听变化，当state发生更新时，就可以在这个函数的回调中监听。
 
+# 安装 fetch  兼容老浏览器es6-promise
+$ npm install whatwg-fetch es6-promise --save
 
 
 ```
@@ -127,28 +177,30 @@ Perf.stop() // 停止检测
 Perf.printWasted() // 打印浪费性能的组件列表
 
 ```
+## 接口模拟 基于koa
+```
+# 安装koa
+$ npm install koa koa-body koa-router --save-dev
 
+```
 ## React 优化方案
-### 方法一： react-addons-pure-render-mixin 避免无效渲染
-> $ npm i react-addons-pure-render-mixin --save
 ```
-import pureRenderMixin from 'react-addons-pure-render-mixin'
+> 避免无效渲染
+  react-addons-pure-render-mixin
+  $ npm i react-addons-pure-render-mixin --save
 
-在组件的constructor中添加：
-  this.shouldComponentUpdate=pureRenderMixin.shouldComponentUpdate.bind(this); // 避免无效渲染
+  import pureRenderMixin from 'react-addons-pure-render-mixin'
+  在组件的constructor中添加：
+    this.shouldComponentUpdate=pureRenderMixin.shouldComponentUpdate.bind(this); // 避免无效渲染
 
-```
-### 方法二： Immutable.js 优化数据
-> Immutable 实现了js中“不可变数据”的概念
-```
+
+> 优化数据
+  Immutable.js （ 实现了js中“不可变数据”的概念 ）
+
   适用于数据结构很深的大型项目（数据结构很深的项目需考虑是否需要用此框架）
-```
 
-## 首屏性能优化
-```
-（1）静态资源的懒加载
-    方案一：
-      使用react-router中的huge-apps（它将react-router本身和webpack的require.ensure结合起来，来解决资源的懒加载）
-
+> 首屏性能优化
+  静态资源的懒加载
+  使用react-router中的huge-apps（它将react-router本身和webpack的require.ensure结合起来，来解决资源的懒加载）
 
 ```

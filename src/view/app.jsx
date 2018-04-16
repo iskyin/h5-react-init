@@ -1,3 +1,7 @@
+/**
+ * @author lenjee (lenjee@outlook.com)
+ * @website www.lenjee.com
+**/
 import React from 'react';
 // 避免无效渲染 每个子组件必须添加
 import PRXI from 'react-addons-pure-render-mixin';
@@ -28,10 +32,6 @@ class APP extends React.Component {
     // 避免无效渲染
     this.shouldComponentUpdate=PRXI.shouldComponentUpdate.bind(this);
     this.state={
-      headerInfo:{
-        title:'登录页登录页登录页登录页登录页登录页登录页登录页',
-        show:{},
-      }
     };
   }
 
@@ -39,7 +39,7 @@ class APP extends React.Component {
     return (
       <div className='app'>
         {this.props.children}
-        <FloorMenu/>
+        <FloorMenu />
       </div>
     );
   }
