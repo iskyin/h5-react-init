@@ -1,9 +1,11 @@
+/**
+ * @author lenjee (lenjee@outlook.com)
+ * @website www.lenjee.com
+**/
 import React from 'react';
 import  { Router, Route, IndexRoute } from 'react-router';
 // 路由的切换由URL的hash变化决定，即URL的#部分发生变化
 import { hashHistory } from 'react-router';
-
-
 // 页面
 import APP from '@/view/app';
 import Discover from '@/view/discover';
@@ -12,10 +14,11 @@ import Login from '@/view/login';
 import Me from '@/view/me';
 import Message from '@/view/message';
 import Unfound from '@/view/unfound';
-
+// 配置路由
 class RouteMap extends React.Component {
   updateHandle(){
-    console.log('路由变更 --> ： ')
+    console.log('路由变更 -->  ');
+    console.log('刷新页面逻辑需要处理  -->  页面刷新底部banner会重新刷新为主页');
   }
   render(){
     return(
