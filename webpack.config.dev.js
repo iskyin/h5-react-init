@@ -55,6 +55,12 @@ module.exports = {
     ],
 
     devServer: {
+      proxy:{ // 配置代理
+        'api':{ // 凡是'/api'开头的http请求都会被代理到此端口下
+          target:'http://localhost:9000', // 将9000代理到9999
+          secure:false,
+        }
+      },
       port:sysinfo.dev.PORT, // 端口号
       // colors: true, // 终端中输出结果为彩色
       host: sysinfo.dev.HOST,

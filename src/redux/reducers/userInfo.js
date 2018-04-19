@@ -2,8 +2,7 @@
  * @author lenjee (lenjee@outlook.com)
  * @website www.lenjee.com
 **/
-import * as actionTypes from '@/redux/contants/userInfo';
-let initState = {
+const initState = {
   txt:'******',
 };
 function userInfo(state=initState,action){

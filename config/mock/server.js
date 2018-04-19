@@ -26,5 +26,15 @@ router.get('/api/user',function*(next){
 router.post('/api/login',koaBody,function*(next){
   console.log('post: ',this.request.body);
   // 返回token
-  this.body=JSON.stringify()
+  var loginInfo={
+    token:"sdfalsdfansdlfkasdnflasndf",
+    version:'00.00.0001',
+    account:'lenjee',
+    clientOSType:'100019019101'
+  }
+  this.body=JSON.stringify(loginInfo);
 })
+
+app.use(router.routes())
+   .use(router.allowedMethods());
+app.listen(9000);

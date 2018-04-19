@@ -2,7 +2,6 @@
  * @author lenjee (lenjee@outlook.com)
  * @website www.lenjee.com
 **/
-import * as actionTypes from '@/redux/contants/userInfo';
 
 export function updateNickName(data){
   return{

@@ -1,7 +1,7 @@
 module.exports={
   dev:{
     HOST:'localhost',
-    PORT:3332,
+    PORT:9999,
   },
   build:{
 
