@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": " NODE_ENV=dev webpack-dev-server  --progress --colors --config  ./webpack.config.dev.js",
-    "mock": "node ./config/mock/server.js",
+    "server": "node ./config/mock/index.js",
     "build": "rm -rf ./build && NODE_ENV=production webpack --config ./config/webpack.config.prod.js -p --progress --colors"
   },
   "author": "lenjee",

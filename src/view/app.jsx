@@ -10,7 +10,7 @@ import PRXI from 'react-addons-pure-render-mixin';
 import '@/style/common/index.less';
 
 // 公共配置
-import InitAppInfo from '@/config/app.js';
+import InitAppInfo from '@/config/app';
 new InitAppInfo({
   serverName:'dev', // 开发环境
   version:'00.00.0001', // 版本信息
