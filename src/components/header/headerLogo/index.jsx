@@ -30,7 +30,7 @@ class HeaderLogo extends React.Component {
       <div className='headerLogo'>
         <div className='title'>{this.props.info.title}</div>
         <div className='logo'>
-          LENJEE
+          我的金钱帝国
         </div>
         <div className='right'>
           <div onClick={this.toScanner.bind(this)} className='rgt scanner '></div>

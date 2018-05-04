@@ -33,7 +33,14 @@ class FloorMenu extends React.Component {
         <Link to='/'>
           <div onClick={this.selectedMenu.bind(this,"home")}  className='menuBtn'>
             <div className={this.state.sltMenu.home ? 'menu_logo homed' : 'menu_logo home'}></div>
-            <div className={this.state.sltMenu.home?'menu_title slted':'menu_title slt'}>主页</div>
+            <div className={this.state.sltMenu.home?'menu_title slted':'menu_title slt'}>币圈</div>
+          </div>
+        </Link>
+
+        <Link onClick={this.selectedMenu.bind(this,"discover")}  to='/discover'>
+          <div className='menuBtn'>
+            <div className={this.state.sltMenu.discover ? 'menu_logo discovered' : 'menu_logo discover'} ></div>
+            <div className={this.state.sltMenu.discover?'menu_title slted':'menu_title slt'}>发现</div>
           </div>
         </Link>
 
@@ -44,12 +51,7 @@ class FloorMenu extends React.Component {
           </div>
         </Link>
 
-        <Link onClick={this.selectedMenu.bind(this,"discover")}  to='/discover'>
-          <div className='menuBtn'>
-            <div className={this.state.sltMenu.discover ? 'menu_logo discovered' : 'menu_logo discover'} ></div>
-            <div className={this.state.sltMenu.discover?'menu_title slted':'menu_title slt'}>发现</div>
-          </div>
-        </Link>
+
 
         <Link onClick={this.selectedMenu.bind(this,"me")} to='/me'>
           <div className='menuBtn'>
