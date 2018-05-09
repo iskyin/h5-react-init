@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var SYS_INFO=require('./config/sysinfo');
 
 module.exports = {
@@ -43,7 +43,7 @@ module.exports = {
           {
             test:/\.(png|gif|jpg|jpeg)$/,
             loader:'url-loader?limit=10000'
-          },
+          },  // 限制大小5kb
       ]
     },
 
@@ -58,10 +58,6 @@ module.exports = {
         template: __dirname + '/config/template/index.html'
       }),
 
-      // // 打开浏览器
-      // new OpenBrowserPlugin({
-      //   url: SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.HOST,
-      // }),
 
       // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
       new webpack.DefinePlugin({
@@ -75,13 +71,13 @@ module.exports = {
 
     devServer: {
       proxy:{ // 配置代理
-        '/api':{ // 凡是'/api'开头的http请求都会被代理到此端口下
-          target: 'http://'+SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT,
-          // target:SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT, // 将9999代理到9998
+        'api':{ // 凡是'/api'开头的http请求都会被代理到此端口下
+          target:SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT, // 将9000代理到9999
           secure:false,
         }
       },
-      port:SYS_INFO.dev.PORT,
+      port:SYS_INFO.dev.PORT, // 端口号
+      // colors: true, // 终端中输出结果为彩色
       host: SYS_INFO.dev.HOST,
       historyApiFallback: true, // 不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
       inline: true, // 实时刷新

@@ -2,21 +2,30 @@ var pkg = require('./package.json')
 var path = require('path')
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); //
+/**
+ * extract-text-webpack-plugin 抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
+ * 其有三个参数:
+ * @use 指需要什么样的loader去编译文件,这里由于源文件是.css所以选择css-loader
+ * @fallback 编译后用什么loader来提取css文件
+ * @publicfile 用来覆盖项目路径,生成该css文件的文件路径
+ */
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var SYS_INFO=require('./config/sysinfo');
 
 module.exports = {
 
   // 入口文件
   entry: {
-    app: path.resolve(__dirname, 'src/index.jsx'),
-    // 将 第三方依赖（node_modules中的） 单独打包
-    vendor: Object.keys(pkg.dependencies),
+    app: path.resolve(__dirname, './src/index.jsx'),
+    // 将 必须的 第三方依赖（node_modules中的） 单独打包
+    vendor: Object.keys(pkg.dependencies)
   },
 
   // 输出
   output: {
-    path: __dirname + "/build",
-    filename: "[name].[chunkhash:8].js"
+    path: __dirname + "./build",
+    filename: "[name].[chunkhash:8].js",
+    publicPath: '/'
   },
 
   resolve:{
@@ -28,34 +37,46 @@ module.exports = {
 
   module: {
     loaders: [
-        { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
-        { test: /\.less$/,
+        {
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: ExtractTextPlugin.extract({
+          loader: 'babel-loader'
+        },
+        {
+          test: /\.less$/,
+          exclude: /node_modules/,
+          use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: 'css-loader!less-loader'
           })
         },
-        { test: /\.css$/,
+        {
+          test: /\.css$/,
           exclude: /node_modules/,
-          loader: ExtractTextPlugin.extract({
+          use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: 'css-loader'
           })
         },
-        { test:/\.(png|gif|jpg|jpeg|bmp)$/i, loader:'url-loader?limit=5000&name=img/[name].[chunkhash:8].[ext]' },
-        { test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i, loader:'url-loader?limit=5000&name=fonts/[name].[chunkhash:8].[ext]'}
+        {
+          test:/\.(png|gif|jpg|jpeg|bmp)$/i,
+          loader:'url-loader?limit=5000&name=img/[name].[sha512:hash:base64:8].[ext]'
+        },
+        {
+          test:/\.(png|woff|woff2|svg|ttf|eot)($|\?)/i,
+          loader:'url-loader?limit=5000&name=fonts/[name].[sha512:hash:base64:8].[ext]'
+        }
     ]
   },
 
   plugins: [
 
     // webpack 内置的 banner-plugin 为每个 chunk 文件头部添加 banner
-    new webpack.BannerPlugin("www.lenjee.com"),
+    new webpack.BannerPlugin("Copyright by www.lenjee.com"),
 
     // html 模板插件
     new HtmlWebpackPlugin({
-        template: __dirname + '/public/template/index.html'
+        template: __dirname + '/config/template/index.html'
     }),
 
     // 定义为生产环境，编译 React 时压缩到最小
@@ -76,7 +97,7 @@ module.exports = {
     }),
 
     // 分离CSS和JS文件
-    new ExtractTextPlugin('[name].[chunkhash:8].css'),
+    new ExtractTextPlugin('[name].[sha512:hash:base64:8].css'),
 
     // 提供公共代码
     new webpack.optimize.CommonsChunkPlugin({

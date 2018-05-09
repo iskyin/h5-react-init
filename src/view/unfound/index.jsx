@@ -7,7 +7,7 @@ import React from 'react';
 import PRXI from 'react-addons-pure-render-mixin';
 
 /**
-
+  报错页面
 **/
 class Unfound extends React.Component {
   constructor(props){

@@ -111,7 +111,15 @@ npm install redux react-redux --save
 
 # 安装 fetch  兼容老浏览器es6-promise
 $ npm install whatwg-fetch es6-promise --save
-
+    说明:
+      (1) fetch是发送ajax请求的一种解决方案，与XMLHttpRequest类似
+      (2) fetch的API使用的是promise
+      (3) fetch发送请求默认不会带cookie，需设置credentials: 'include'
+      (4) fetch返回的是一个promise对象，只有在网络请求错误的时候才会reject,只要服务器给响应promise一定是resolve.
+      (5) fetch的请求结果存储在res.body中，是个一个ReadableStream，需要将response进行JSON.parse()处理
+      (6) fetch 不支持同步
+      (7) fetch 不支持取消一个请求
+      (8) fetch 无法查看请求的进度
 
 ```
 ## React 生命周期说明
