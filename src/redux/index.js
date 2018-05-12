@@ -1,14 +1,7 @@
 /**
- * @author lenjee (lenjee@outlook.com)
- * @website www.lenjee.com
-**/
-
-/**
  * store配置
- * 
  */
-import { createStore } from 'redux';
-
+import createStore from '@/redux/store';
 // reducers集合
 import indexReducer from '@/redux/reducers';
 

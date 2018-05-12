@@ -1,30 +1,19 @@
-/**
- * @author lenjee (lenjee@outlook.com)
- * @website www.lenjee.com
-**/
-// 引入redux的 createStore、中间件及compose
+// createStore 用于创建 store
+// applyMiddleware对redux的dispacth方法进行封装(内部对函数进行了柯理化)
+// compose 从右到左来组合多个函数
 import {createStore, applyMiddleware, compose} from 'redux';
-// 中间件 redux-thunk 支持dispatch function，并且可以异步调用它
+//  异步 action 中间件 支持dispatch function，并且可以异步调用它
 import thunk from 'redux-thunk';
 // 利用redux-logger打印日志
 import createLogger from 'redux-logger';
 // 调用日志打印方法
 const loggerMiddleware = createLogger();
-// 创建一个中间件集合
-const middleware = [thunk, loggerMiddleware];
-
-/**
- * 用 localstorage 保存最后一次state
- *  lastInfo:{
- *    url:'', // 路由
- *    state:{}, // 最后一次的State
- *  }
-**/
-
+// 创建一个中间件集合 便于传入
+const middlewareArr = [thunk, loggerMiddleware];
 // 利用compose增强store，这个 store 与 applyMiddleware 和 redux-devtools 一起使用
 const enhanceStore = compose(
-  applyMiddleware(...middleware),
-  window.devToolsExtension ? window.devToolsExtension() : p => p
+  applyMiddleware(...middlewareArr),
+  window.devToolsExtension ? window.devToolsExtension() : undefined
 )(createStore);
 
 export default enhanceStore;

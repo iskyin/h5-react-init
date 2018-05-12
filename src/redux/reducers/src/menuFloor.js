@@ -11,19 +11,20 @@ let initState ={
 }
 const MenuFloor = (state=initState,action) =>{
   console.log('menu_floor state: ', state , ' action : ',action );
+  let newState=Object.assign(state);
   switch(action.type){
     case 'home':
-      state=setMenuFloor(action.type);
-      return state;
+      newState=setMenuFloor(action.type);
+      return newState;
     case 'message':
-      state=setMenuFloor(action.type);
-      return state;
+      newState=setMenuFloor(action.type);
+      return newState;
     case "discover":
-      state=setMenuFloor(action.type);
-      return state;
+      newState=setMenuFloor(action.type);
+      return newState;
     case "me":
-      state=setMenuFloor(action.type);
-      return state;
+      newState=setMenuFloor(action.type);
+      return newState;
     default:
       return state;
   }
