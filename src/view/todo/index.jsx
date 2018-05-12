@@ -14,6 +14,7 @@ import "./index.less";
   todo list 测试
 **/
 class Todo extends React.Component {
+
   constructor(props) {
     super(props);
     this.shouldComponentUpdate=PRMX.shouldComponentUpdate.bind(this);

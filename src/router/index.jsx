@@ -25,10 +25,10 @@ class RouteMap extends React.Component {
       <Router history={hashHistory} onUpdate={this.updateHandle.bind(this)}>
         <Route  path="/" component={APP}>
           <IndexRoute component={Home} />
-          <Route path="discover" component={Discover} />
-          <Route path="login" component={Login} />
-          <Route path="me" component={Me} />
-          <Route path="message" component={Message} />
+          <Route path="/discover" component={Discover} />
+          <Route path="/login" component={Login} />
+          <Route path="/me" component={Me} />
+          <Route path="/message" component={Message} />
           <Route path="*" component={Unfound} />
         </Route>
       </Router>

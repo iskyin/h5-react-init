@@ -21,7 +21,7 @@ class Unfound extends React.Component {
   render() {
     return (
       <div className='unfound'>
-        unfound
+        undefined
       </div>
     );
   }

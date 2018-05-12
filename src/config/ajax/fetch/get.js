@@ -3,7 +3,7 @@
 **/
 import 'whatwg-fetch';
 import 'es6-promise';
-import cache from '@/config/cache';
+import cache from '@/util/cache';
 import status from '@/config/status';
 
 /**

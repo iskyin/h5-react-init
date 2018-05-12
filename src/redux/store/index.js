@@ -12,6 +12,7 @@ import createLogger from 'redux-logger';
 const loggerMiddleware = createLogger();
 // 创建一个中间件集合
 const middleware = [thunk, loggerMiddleware];
+
 /**
  * 用 localstorage 保存最后一次state
  *  lastInfo:{
@@ -25,4 +26,5 @@ const enhanceStore = compose(
   applyMiddleware(...middleware),
   window.devToolsExtension ? window.devToolsExtension() : p => p
 )(createStore);
+
 export default enhanceStore;

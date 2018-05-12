@@ -60,6 +60,13 @@ $ npm install react-router --save
 
 # 安装redux
 npm install redux react-redux --save
+
+  为什么用 Redux ?
+    React中，数据的流向是单向的
+      即:
+        props只能从父组件向下传递到子组件
+        而state只能在组件内部使
+
   Redux是Flux的一种实现方法
     flux数据流向：
       -> Action:
@@ -80,6 +87,7 @@ npm install redux react-redux --save
           -> Store
             -> State
               -> UI层展现
+
 说明：
   > actions:
     状态管理器需要做的操作

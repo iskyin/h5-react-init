@@ -5,7 +5,7 @@
 export function getItem(key){
   let value='';
   try {
-    value = localStorage.getItem(key);
+    value = window.localStorage.getItem(key);
   } catch (e) {
     // 开发环境下提示error
     if (__DEV__) {
@@ -23,8 +23,9 @@ export function getItem(key){
 **/
 export function setItem(key,value){
   try {
+    console.log('localStorage -> key : ',key,' value: ',value)
     // 兼容 ios 无痕模式
-    localStorage.setItem(key,value);
+    window.localStorage.setItem(key,value);
   } catch (e) {
     // 开发环境下提示 error
     if (__DEV__) {

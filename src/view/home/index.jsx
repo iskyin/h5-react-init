@@ -6,22 +6,22 @@ import React from 'react';
 import {Link} from 'react-router';
 // 避免无效渲染 每个子组件必须添加
 import PRXI from 'react-addons-pure-render-mixin';
-// 引入组件
-import Header from '@/components/header/headerLogo';
-
 // 数据请求
-import { getFocus } from '@/service/home.js';
-
+import { getFocus } from '@/service/index.js';
+// 引入组件
+import FloorMenu from '@/components/floor/menu';
+import Header from '@/components/header/headerLogo';
 /**
  * 主页
  */
+import './index.less';
 class Home extends React.Component {
   constructor(props){
     super(props);
     // 避免无效渲染
     this.shouldComponentUpdate=PRXI.shouldComponentUpdate.bind(this);
     this.state={
-      info:{
+      headTitle:{
         title:'主页', // 标题
         show:{}, // 是否显示
       },
@@ -47,7 +47,8 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-    this.dataInit();
+    // this.dataInit();
+    console.log("home -> : ",this.props)
   }
 
   render() {
@@ -55,11 +56,16 @@ class Home extends React.Component {
     const { store } = this.context;
     return (
       <div className='home'>
-        <Header info={this.state.info} />
+        <Header info={this.state.headTitle} />
+
         <div className="redux">
           store : { this.store }
         </div>
-
+        <Link to='*'>
+          <div>
+            跳转 TodoList
+          </div>
+        </Link>
         <div className="redux">
           ------- 请求值 -------
           <ul>
@@ -68,6 +74,11 @@ class Home extends React.Component {
             })}
           </ul>
         </div>
+
+        <div>
+        </div>
+
+        <FloorMenu/>
       </div>
     );
   }

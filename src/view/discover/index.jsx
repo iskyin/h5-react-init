@@ -10,7 +10,7 @@ import * as userInfo from '@/redux/actions/userinfo'
 
 // 引入组件
 import Header from '@/components/header/headerLogo';
-
+import FloorMenu from '@/components/floor/menu';
 /**
 
 **/
@@ -20,7 +20,7 @@ class Discover extends React.Component {
     // 避免无效渲染
     this.shouldComponentUpdate=PRXI.shouldComponentUpdate.bind(this);
     this.state={
-      info:{
+      headTitle:{
         title:'发现', // 标题
         show:{}, // 是否显示
       }
@@ -30,8 +30,9 @@ class Discover extends React.Component {
   render() {
     return (
       <div className='discover'>
-        <Header info={this.state.info} />
+        <Header info={this.state.headTitle} />
         actions={this.userInfo}
+        <FloorMenu />
       </div>
     );
   }

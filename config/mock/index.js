@@ -7,44 +7,44 @@ var app =require('koa')();
 var router = require('koa-router')();
 var koaBody=require('koa-body')();
 var SYS_INFO=require('../sysinfo/index');
-router.get('/',function*(next){
-  this.body='hello koa';
+
+// 首页
+// https://gt/Portal/Invest/Project?type=1
+router.get('/Portal/Invest/Project',function*(next){
+  this.body='首页';
+});
+// ------------ api ------------
+// https://gt/Portal/Invest/GetProjectList
+router.get('/Portal/Invest/GetProjectList',function*(next){
+  this.body=require('./src/index/GetNoAgreementCount.js');
+});
+// https://gt/Portal/Invest/GetNoAgreementCount
+router.get('/Portal/Invest/GetNoAgreementCount',function*(next){
+  this.body=require('./src/index/GetNoAgreementCount.js');
 });
 
-router.get('/api',function*(next){
-  this.body='hello koa';
+// 详情页
+// https://gt/Portal/Invest/ProjectView?projectID=184ne0hriwgs980ufnn3vefhkxtrpl72
+router.get('/Portal/Invest/ProjectView',function*(next){
+  this.body='详情页';
 });
-
-// 首页信息
-var homeListData = require('./src/home/focus.js')
-router.get('/api/home/focus',function*(next){
-  this.body = homeListData
+// ------------ api ------------
+// https://gt/Portal/Invest/GetNoAgreementCount
+router.get('/Portal/Invest/GetNoAgreementCount',function*(next){
+  this.body=require('./src/detail/GetNoAgreementCount.js');
 });
-
-// 用户信息
-router.get('/api/user',function*(next){
-  this.body={
-      id : '100000',
-      nickname :  '子伯',
-      img : 'http://www.lenjee.com/public/images/common/skyin.jpg',
-      addr : '深圳',
-      gender : '男',
-      phoneno : '18588208895',
-  };
+// https://gt/Portal/Invest/FindCopProjectDynamicListByParams
+router.get('/Portal/Invest/FindCopProjectDynamicListByParams',function*(next){
+  this.body=require('./src/detail/FindCopProjectDynamicListByParams.js');
 });
-
-// 用户信息
-router.get('/api/home/',function*(next){
-  this.body={
-      id : '100000',
-      nickname :  '子伯',
-      img : 'http://www.lenjee.com/public/images/common/skyin.jpg',
-      addr : '深圳',
-      gender : '男',
-      phoneno : '18588208895',
-  };
+// https://gt/Portal/Invest/FindMoreSubscribeList
+router.get('/Portal/Invest/FindMoreSubscribeList',function*(next){
+  this.body=require('./src/detail/FindMoreSubscribeList.js');
 });
-
+// https://gt/Portal/Invest/FindMoreSubscribeListByParams
+router.get('/Portal/Invest/FindMoreSubscribeListByParams',function*(next){
+  this.body=require('./src/detail/FindMoreSubscribeListByParams.js');
+});
 
 // 登录
 router.post('/api/login',koaBody,function*(next){

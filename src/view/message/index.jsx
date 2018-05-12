@@ -7,6 +7,8 @@ import React from 'react';
 import PRXI from 'react-addons-pure-render-mixin';
 // 引入组件
 import Header from '@/components/header/headerLogo';
+import FloorMenu from '@/components/floor/menu';
+
 /**
 
 **/
@@ -16,8 +18,8 @@ class Message extends React.Component {
     // 避免无效渲染
     this.shouldComponentUpdate=PRXI.shouldComponentUpdate.bind(this);
     this.state={
-      info:{
-        title:'主页', // 标题
+      headTitle:{
+        title:'信息', // 标题
         show:{}, // 是否显示
       }
     };
@@ -26,8 +28,9 @@ class Message extends React.Component {
   render() {
     return (
       <div className='message'>
-        <Header info={this.state.info} />
+        <Header info={this.state.headTitle} />
         Message
+        <FloorMenu />
       </div>
     );
   }
