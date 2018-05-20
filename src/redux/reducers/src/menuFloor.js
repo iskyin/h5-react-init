@@ -1,14 +1,15 @@
-/**
- * 底部状态栏切换
- * @param {[type]} state  [初始化state]
- * @param {[type]} action [description]
- */
 let initState ={
   home:true,
   message:false,
   discover:false,
   me:false,
 }
+
+/**
+ * 底部状态栏切换
+ * @param {[type]} [state=initState] [初始化数据]
+ * @param {[type]} action            [修改]
+ */
 const MenuFloor = (state=initState,action) =>{
   console.log('menu_floor state: ', state , ' action : ',action );
   let newState=Object.assign(state);
@@ -28,9 +29,12 @@ const MenuFloor = (state=initState,action) =>{
     default:
       return state;
   }
-
 }
 
+/**
+ * 设置底部菜单
+ * @param {[type]} menu [选项]
+ */
 const setMenuFloor=(menu)=>{
   let initMenu={
     home:false,

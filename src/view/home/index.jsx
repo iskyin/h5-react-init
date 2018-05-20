@@ -63,11 +63,9 @@ class Home extends React.Component {
         </div>
         <Link to='*'>
           <div>
-            跳转 TodoList
           </div>
         </Link>
         <div className="redux">
-          ------- 请求值 -------
           <ul>
             {this.state.list.map((item, index) => {
               return <li > { index }:{ item.from } </li>

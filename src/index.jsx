@@ -21,9 +21,9 @@ import Router from '@/router';
 
 // 渲染
 render(
-	// 使用Provider组件包裹App组件，把store作为props传入
-	<Provider store={store}>
-		<Router />
-	</Provider>,
+  // 使用Provider组件包裹App组件，把store作为props传入
+  <Provider store={store}>
+    <Router />
+  </Provider>,
 	document.getElementById('root')
 )

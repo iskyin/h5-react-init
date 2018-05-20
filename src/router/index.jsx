@@ -5,7 +5,10 @@
 import React from 'react';
 import  { Router, Route, IndexRoute } from 'react-router';
 // 路由的切换由URL的hash变化决定，即URL的#部分发生变化
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import store from '@/redux'
+const history = syncHistoryWithStore(browserHistory, store);
 // 页面
 import APP from '@/view/app';
 import Discover from '@/view/discover';
@@ -14,6 +17,7 @@ import Login from '@/view/login';
 import Me from '@/view/me';
 import Message from '@/view/message';
 import Unfound from '@/view/unfound';
+
 // 配置路由
 class RouteMap extends React.Component {
   updateHandle(){
@@ -22,7 +26,7 @@ class RouteMap extends React.Component {
   }
   render(){
     return(
-      <Router history={hashHistory} onUpdate={this.updateHandle.bind(this)}>
+      <Router history={history} onUpdate={this.updateHandle.bind(this)}>
         <Route  path="/" component={APP}>
           <IndexRoute component={Home} />
           <Route path="/discover" component={Discover} />
