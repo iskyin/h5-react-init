@@ -1,7 +1,8 @@
-var pkg = require('./package.json')
+var pkg = require('../package.json')
 var path = require('path')
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 /**
  * extract-text-webpack-plugin 抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
  * 其有三个参数:
@@ -10,20 +11,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
  * @publicfile 用来覆盖项目路径,生成该css文件的文件路径
  */
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var SYS_INFO=require('./config/sysinfo');
+var SYS_INFO=require('./sysinfo');
 
 module.exports = {
 
   // 入口文件
   entry: {
-    app: path.resolve(__dirname, './src/index.jsx'),
+    app: path.resolve(__dirname, '../src/index.jsx'),
     // 将 必须的 第三方依赖（node_modules中的） 单独打包
     vendor: Object.keys(pkg.dependencies)
   },
 
   // 输出
   output: {
-    path: __dirname + "./build",
+    path: path.resolve(__dirname, '../build'),
     filename: "[name].[chunkhash:8].js",
     publicPath: '/'
   },
@@ -31,7 +32,7 @@ module.exports = {
   resolve:{
     extensions:['.js','.jsx'],
     alias: { // 别名配置
-      '@': path.resolve(__dirname, './src'), //设置跟路径
+      '@': path.resolve(__dirname, '../src'), //设置跟路径
     }
   },
 
@@ -76,7 +77,7 @@ module.exports = {
 
     // html 模板插件
     new HtmlWebpackPlugin({
-        template: __dirname + '/config/template/index.html'
+        template: __dirname + '/template/index.html'
     }),
 
     // 定义为生产环境，编译 React 时压缩到最小

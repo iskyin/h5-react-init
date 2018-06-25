@@ -6,7 +6,7 @@ import React from 'react';
 import {Link} from 'react-router';
 // 避免无效渲染 每个子组件必须添加
 import PRXI from 'react-addons-pure-render-mixin';
-// bindActionCreators函数返回的是一个对象，调用这个对象中（对应相应action）的属性，就会自动创建aciton并dispatch。
+// bindActionCreators函数返回的是一个对象，调用这个对象中（对应相应action）的属性，就会自动创建 aciton 并 dispatch。
 import { bindActionCreators } from 'redux'
 // 引入connect函数用来生成Redux组件
 import {connect} from 'react-redux';
@@ -32,7 +32,7 @@ class FloorMenu extends React.Component {
         <Link onClick={this.selectedMenu.bind(this,"home")} to='/'>
           <div className='menuBtn'>
             <div className={this.props.menusStore.home ? 'menu_logo _homed':'menu_logo _home'}></div>
-            <div className={this.props.menusStore.home ? 'menu_title slted':'menu_title slt'}>币圈</div>
+            <div className={this.props.menusStore.home ? 'menu_title slted':'menu_title slt'}>随记</div>
           </div>
         </Link>
 

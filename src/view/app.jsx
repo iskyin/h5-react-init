@@ -19,8 +19,8 @@ console.log('userInfo_action -> : ',userInfo_action);
 import '@/style/common/index.less';
 
 // 公共配置
-import InitAppInfo from '@/config/app';
-new InitAppInfo({
+import initAppInfo from '@/config/app';
+new initAppInfo({
   serverName:'mock', // 开发环境
   version:'00.00.0001', // 版本信息
   docWidth:750, // 设计图宽度
@@ -78,7 +78,7 @@ class APP extends React.Component {
     setTimeout(()=>{
       this.setState({
         loading:false
-      })
+      });
     },2000);
 
 

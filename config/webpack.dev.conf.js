@@ -1,13 +1,13 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var SYS_INFO=require('./config/sysinfo');
+// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var SYS_INFO=require('./sysinfo');
 
 module.exports = {
 
     // 入口文件
-    entry: path.resolve(__dirname, './src/index.jsx'),
+    entry: path.resolve(__dirname, '../src/index.jsx'),
 
     // 输出
     output: {
@@ -18,7 +18,7 @@ module.exports = {
     resolve:{
       extensions:['.js','.jsx'],
       alias: { // 别名配置
-        '@': path.resolve(__dirname, './src'), //设置跟路径
+        '@': path.resolve(__dirname, '../src'), //设置跟路径
       }
     },
 
@@ -28,7 +28,11 @@ module.exports = {
           {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            query: {
+                presets: ['es2015','react','stage-1'],
+                plugins: ['transform-decorators-legacy','transform-decorators']
+            }
           },
           {
             test: /\.less$/,
@@ -43,7 +47,7 @@ module.exports = {
           {
             test:/\.(png|gif|jpg|jpeg)$/,
             loader:'url-loader?limit=10000'
-          },  // 限制大小5kb
+          },
       ]
     },
 
@@ -55,9 +59,13 @@ module.exports = {
 
       // html 模板插件
       new HtmlWebpackPlugin({
-        template: __dirname + '/config/template/index.html'
+        template: __dirname + '/template/index.html'
       }),
 
+      // // 打开浏览器
+      // new OpenBrowserPlugin({
+      //   url: SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.HOST,
+      // }),
 
       // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
       new webpack.DefinePlugin({
@@ -71,13 +79,13 @@ module.exports = {
 
     devServer: {
       proxy:{ // 配置代理
-        'api':{ // 凡是'/api'开头的http请求都会被代理到此端口下
-          target:SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT, // 将9000代理到9999
+        '/api':{ // 凡是'/api'开头的http请求都会被代理到此端口下
+          target: 'http://'+SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT,
+          // target:SYS_INFO.dev.HOST+':'+ SYS_INFO.dev.SERVER_PORT, // 将9999代理到9998
           secure:false,
         }
       },
-      port:SYS_INFO.dev.PORT, // 端口号
-      // colors: true, // 终端中输出结果为彩色
+      port:SYS_INFO.dev.PORT,
       host: SYS_INFO.dev.HOST,
       historyApiFallback: true, // 不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
       inline: true, // 实时刷新
